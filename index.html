@@ -629,19 +629,37 @@
             50% { transform: scale(1.2) rotate(180deg); opacity: 1; }
         }
 
-        /* Floating elements */
+        /* Floating elements - Fixed positioning */
         .floating-element {
             position: absolute;
-            opacity: 0.1;
+            opacity: 0.3;
             pointer-events: none;
-            animation: floatAround 15s linear infinite;
+            font-size: 2rem;
+            z-index: 1;
+            animation: gentleFloat 12s ease-in-out infinite;
         }
 
-        @keyframes floatAround {
-            0% { transform: translateY(0px) rotate(0deg); }
-            33% { transform: translateY(-30px) rotate(120deg); }
-            66% { transform: translateY(15px) rotate(240deg); }
-            100% { transform: translateY(0px) rotate(360deg); }
+        .floating-element:nth-child(2) { animation-delay: -2s; }
+        .floating-element:nth-child(3) { animation-delay: -4s; }
+        .floating-element:nth-child(4) { animation-delay: -6s; }
+
+        @keyframes gentleFloat {
+            0%, 100% { 
+                transform: translateY(0px) translateX(0px) rotate(0deg); 
+                opacity: 0.3;
+            }
+            25% { 
+                transform: translateY(-20px) translateX(10px) rotate(5deg); 
+                opacity: 0.6;
+            }
+            50% { 
+                transform: translateY(-10px) translateX(-5px) rotate(-3deg); 
+                opacity: 0.4;
+            }
+            75% { 
+                transform: translateY(-25px) translateX(8px) rotate(7deg); 
+                opacity: 0.5;
+            }
         }
     </style>
 </head>
@@ -659,9 +677,11 @@
     </header>
 
     <section class="hero">
-        <div class="floating-element" style="top: 20%; left: 10%;">🌟</div>
-        <div class="floating-element" style="top: 60%; right: 15%;">✈️</div>
-        <div class="floating-element" style="bottom: 30%; left: 20%;">🗺️</div>
+        <!-- Static positioned floating elements -->
+        <div class="floating-element" style="left: 15%; top: 25%; animation-delay: 0s;">🌟</div>
+        <div class="floating-element" style="right: 20%; top: 35%; animation-delay: 3s;">✈️</div>
+        <div class="floating-element" style="left: 25%; bottom: 30%; animation-delay: 6s;">🗺️</div>
+        <div class="floating-element" style="right: 15%; bottom: 25%; animation-delay: 9s;">📸</div>
         
         <div class="hero-content">
             <h1>Adventure Awaits</h1>
@@ -1037,30 +1057,56 @@
             }
         }
 
-        // Add some dynamic floating elements
+        // Add some dynamic floating elements - Fixed constraints
         function createFloatingElement() {
-            const emojis = ['✈️', '🌟', '🗺️', '📸', '🎒', '🌍'];
+            const emojis = ['✈️', '🌟', '🗺️', '📸', '🎒'];
+            const hero = document.querySelector('.hero');
             const element = document.createElement('div');
+            
             element.className = 'floating-element';
             element.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-            element.style.left = Math.random() * 100 + '%';
-            element.style.top = Math.random() * 100 + '%';
-            element.style.fontSize = (Math.random() * 20 + 20) + 'px';
-            element.style.animationDelay = Math.random() * 15 + 's';
             
-            document.querySelector('.hero').appendChild(element);
+            // Constrain to hero section bounds with padding
+            const heroRect = hero.getBoundingClientRect();
+            const padding = 100; // Keep away from edges
             
+            element.style.left = (padding + Math.random() * (heroRect.width - padding * 2)) + 'px';
+            element.style.top = (padding + Math.random() * (heroRect.height - padding * 2)) + 'px';
+            element.style.fontSize = (Math.random() * 15 + 25) + 'px';
+            element.style.animationDelay = Math.random() * 12 + 's';
+            
+            hero.appendChild(element);
+            
+            // Remove after animation completes
             setTimeout(() => {
-                element.remove();
-            }, 15000);
+                if (element.parentNode) {
+                    element.remove();
+                }
+            }, 12000);
         }
 
-        // Create floating elements periodically
-        setInterval(createFloatingElement, 5000);
+        // Limit number of floating elements and reduce frequency
+        let floatingCount = 0;
+        const maxFloating = 4;
 
-        // Add some initial floating elements
-        for (let i = 0; i < 3; i++) {
-            setTimeout(createFloatingElement, i * 2000);
+        function manageFloatingElements() {
+            if (floatingCount < maxFloating) {
+                createFloatingElement();
+                floatingCount++;
+                
+                // Decrease count when element is removed
+                setTimeout(() => {
+                    floatingCount--;
+                }, 12000);
+            }
+        }
+
+        // Create floating elements less frequently
+        setInterval(manageFloatingElements, 4000);
+
+        // Add fewer initial floating elements
+        for (let i = 0; i < 2; i++) {
+            setTimeout(manageFloatingElements, i * 3000);
         }
 
         // Parallax effect for hero section
