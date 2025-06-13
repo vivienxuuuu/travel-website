@@ -248,21 +248,7 @@
         }
 
         .story-card::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            left: -20px;
-            right: -20px;
-            bottom: -20px;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.02), rgba(240, 147, 251, 0.02));
-            border-radius: 30px;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            z-index: -1;
-        }
-
-        .story-card:hover::before {
-            opacity: 1;
+            display: none;
         }
 
         .story-card:nth-child(even) {
@@ -282,11 +268,10 @@
             overflow: hidden;
             border-radius: 30px;
             box-shadow: 0 25px 60px rgba(102, 126, 234, 0.3);
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .story-image:hover {
-            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.2);
+            /* No hover effects - completely static */
         }
 
         .story-image::before {
@@ -605,23 +590,9 @@
             transform: translateY(0);
         }
 
-        /* Special adventure highlight */
+        /* Special adventure highlight - REMOVED ANIMATION */
         .special-adventure {
             position: relative;
-        }
-
-        .special-adventure::after {
-            content: '✨';
-            position: absolute;
-            top: -20px;
-            right: -20px;
-            font-size: 3rem;
-            animation: sparkle 2s ease-in-out infinite;
-        }
-
-        @keyframes sparkle {
-            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.7; }
-            50% { transform: scale(1.2) rotate(180deg); opacity: 1; }
         }
 
         /* Floating elements - Fixed positioning */
