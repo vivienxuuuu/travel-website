@@ -274,11 +274,12 @@
             overflow: hidden;
             border-radius: 30px;
             box-shadow: 0 25px 60px rgba(102, 126, 234, 0.3);
-            /* Removed all transitions */
+            transform: none !important;
         }
 
         .story-image:hover {
-            /* NO hover effects - completely static */
+            transform: none !important;
+            box-shadow: 0 25px 60px rgba(102, 126, 234, 0.3) !important;
         }
 
         .story-image::before {
@@ -1096,14 +1097,22 @@
             setTimeout(manageFloatingElements, i * 3000);
         }
 
-        // Parallax effect for hero section
+        // Parallax effect for hero section ONLY
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
             const hero = document.querySelector('.hero');
             const heroContent = document.querySelector('.hero-content');
             
-            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-            heroContent.style.transform = `translateY(${scrolled * 0.3}px)`;
+            // Only apply parallax to hero section
+            if (hero && heroContent) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+                heroContent.style.transform = `translateY(${scrolled * 0.3}px)`;
+            }
+            
+            // Force story images to stay in place
+            document.querySelectorAll('.story-image').forEach(image => {
+                image.style.transform = 'none !important';
+            });
         });
 
         // Add loading animation
