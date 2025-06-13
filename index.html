@@ -275,11 +275,60 @@
             border-radius: 30px;
             box-shadow: 0 25px 60px rgba(102, 126, 234, 0.3);
             transform: none !important;
+            cursor: default;
         }
 
         .story-image:hover {
             transform: none !important;
             box-shadow: 0 25px 60px rgba(102, 126, 234, 0.3) !important;
+        }
+
+        /* Photo display styles */
+        .photo-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 30px;
+        }
+
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 30px;
+        }
+
+        .photo-placeholder {
+            color: white;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            line-height: 1.6;
+        }
+
+        .add-photo-note {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .story-image:hover .add-photo-note {
+            opacity: 1;
         }
 
         .story-image::before {
@@ -684,11 +733,16 @@
                 <!-- US Adventures -->
                 <div class="story-card fade-in special-adventure">
                     <div class="story-image">
-                        <div class="story-image-text">
+                        <!-- Replace with your actual photo -->
+                        <!-- <div class="photo-container">
+                            <img src="images/usa/nyc-skyline.jpg" alt="New York skyline from my NYU dorm">
+                        </div> -->
+                        <div class="photo-placeholder">
                             🗽 Manhattan Memories<br>
                             🚂 Epic Rail Journey<br>
                             🎵 Jazz & Soul
                         </div>
+                        <div class="add-photo-note">Add your photos by editing the HTML</div>
                     </div>
                     <div class="story-content">
                         <span class="continent-badge">🇺🇸 United States</span>
@@ -697,9 +751,9 @@
                             Living in New York for my exchange at NYU was incredible - the energy of Manhattan never gets old! The highlight was definitely that crazy 40-hour train ride from Chicago to San Francisco. Watching America change through the window was like flipping through a giant photo book. New Orleans had the best jazz and food, Seattle's coffee scene was amazing, and Yellowstone just blew my mind with its natural beauty.
                         </p>
                         <div class="destinations-list">
-                            <span class="destination-tag highlight-tag">New York (NYU Exchange)</span>
-                            <span class="destination-tag highlight-tag">40-Hour Train Ride</span>
-                            <span class="destination-tag">New Orleans</span>
+                            <span class="destination-tag highlight-tag" data-destination="new-york">New York (NYU Exchange)</span>
+                            <span class="destination-tag highlight-tag" data-destination="train-journey">40-Hour Train Ride</span>
+                            <span class="destination-tag" data-destination="new-orleans">New Orleans</span>
                             <span class="destination-tag">Los Angeles</span>
                             <span class="destination-tag">Seattle</span>
                             <span class="destination-tag">Washington D.C.</span>
@@ -712,11 +766,16 @@
                 <!-- Europe Adventures -->
                 <div class="story-card fade-in">
                     <div class="story-image">
-                        <div class="story-image-text">
+                        <!-- Replace with your actual photo -->
+                        <!-- <div class="photo-container">
+                            <img src="images/europe/edinburgh-castle.jpg" alt="Edinburgh Castle from my university">
+                        </div> -->
+                        <div class="photo-placeholder">
                             🏰 Medieval Castles<br>
                             🌉 Historic Bridges<br>
                             🍝 Culinary Delights
                         </div>
+                        <div class="add-photo-note">Add your photos by editing the HTML</div>
                     </div>
                     <div class="story-content">
                         <span class="continent-badge">🇪🇺 Europe</span>
@@ -725,13 +784,13 @@
                             Edinburgh was my home base for grad school - I loved how the old castle sits right next to modern university buildings. From there, I explored so many amazing places. Prague felt like a fairy tale, Copenhagen was all about cozy cafes and bikes, and Italy... wow. Rome's history is everywhere you look, and Naples has the most authentic pizza I've ever had. Each country had its own vibe and stories to tell.
                         </p>
                         <div class="destinations-list">
-                            <span class="destination-tag highlight-tag">Edinburgh (Grad School)</span>
+                            <span class="destination-tag highlight-tag" data-destination="edinburgh">Edinburgh (Grad School)</span>
                             <span class="destination-tag">London</span>
                             <span class="destination-tag">York</span>
                             <span class="destination-tag">Spain</span>
                             <span class="destination-tag">Belgium</span>
                             <span class="destination-tag">Norway</span>
-                            <span class="destination-tag">Prague</span>
+                            <span class="destination-tag" data-destination="prague">Prague</span>
                             <span class="destination-tag">Copenhagen</span>
                             <span class="destination-tag">Rome & Naples</span>
                             <span class="destination-tag">Düsseldorf & Berlin</span>
@@ -742,11 +801,16 @@
                 <!-- Asia Adventures -->
                 <div class="story-card fade-in">
                     <div class="story-image">
-                        <div class="story-image-text">
+                        <!-- Replace with your actual photo -->
+                        <!-- <div class="photo-container">
+                            <img src="images/asia/tokyo-street.jpg" alt="Busy Tokyo street scene">
+                        </div> -->
+                        <div class="photo-placeholder">
                             🏯 Ancient Traditions<br>
                             🌸 Cultural Immersion<br>
                             🍜 Culinary Adventures
                         </div>
+                        <div class="add-photo-note">Add your photos by editing the HTML</div>
                     </div>
                     <div class="story-content">
                         <span class="continent-badge">🌏 Asia</span>
@@ -755,7 +819,7 @@
                             Japan completely changed how I think about travel and culture. Everything there is so thoughtfully designed - from the train stations to the tiny ramen shops. The way they blend super modern technology with ancient traditions is fascinating. I spent hours just walking around Tokyo, trying different foods, and getting lost in temples. It made me realize how much more of Asia I want to explore.
                         </p>
                         <div class="destinations-list">
-                            <span class="destination-tag">Japan</span>
+                            <span class="destination-tag" data-destination="tokyo">Japan</span>
                             <span class="destination-tag" style="opacity: 0.6; font-style: italic;">More adventures coming soon...</span>
                         </div>
                     </div>
@@ -865,38 +929,114 @@
             lastScroll = currentScroll;
         });
 
-        // Interactive destination tags with enhanced effects
+        // Enhanced destination management with detailed modals
+        const destinationData = {
+            'new-york': {
+                title: 'New York City',
+                subtitle: 'NYU Exchange Program',
+                story: 'Living in Manhattan for my exchange semester was a dream come true. From my dorm near Washington Square Park, I could walk to classes through one of the most vibrant neighborhoods in the world.',
+                photos: [
+                    { src: 'images/usa/new-york/nyu-campus.jpg', alt: 'NYU campus in Washington Square' },
+                    { src: 'images/usa/new-york/manhattan-skyline.jpg', alt: 'Manhattan skyline from Brooklyn Bridge' },
+                    { src: 'images/usa/new-york/central-park.jpg', alt: 'Central Park in autumn' }
+                ],
+                itinerary: [
+                    { day: 'Week 1', activities: 'Getting settled in dorm, campus orientation, exploring Greenwich Village' },
+                    { day: 'Weekends', activities: 'Brooklyn Bridge walks, Central Park picnics, Broadway shows' },
+                    { day: 'Study Spots', activities: 'NYU Library, coffee shops in SoHo, rooftop study areas' }
+                ]
+            },
+            'train-journey': {
+                title: '40-Hour Train Journey',
+                subtitle: 'Chicago to San Francisco',
+                story: 'This was honestly one of the most amazing experiences of my trip. Watching America slowly change through the train window - from the plains of Illinois to the Rocky Mountains to California valleys.',
+                photos: [
+                    { src: 'images/usa/train-journey/chicago-station.jpg', alt: 'Chicago Union Station departure' },
+                    { src: 'images/usa/train-journey/views-from-train.jpg', alt: 'Mountain views from train window' },
+                    { src: 'images/usa/train-journey/train-cabin.jpg', alt: 'My sleeper cabin' }
+                ],
+                itinerary: [
+                    { day: 'Day 1', activities: 'Departure from Chicago, crossing Illinois farmland, dinner in dining car' },
+                    { day: 'Day 2', activities: 'Waking up in Colorado, Rocky Mountain views, meeting fellow travelers' },
+                    { day: 'Arrival', activities: 'San Francisco Bay Area, first glimpse of the Pacific Ocean' }
+                ]
+            },
+            'new-orleans': {
+                title: 'New Orleans',
+                subtitle: 'Jazz, Food & Culture',
+                story: 'New Orleans was like stepping into a different world. The music, the food, the architecture - everything had this incredible soul and history that you could feel walking down every street.',
+                photos: [
+                    { src: 'images/usa/new-orleans/french-quarter.jpg', alt: 'French Quarter balconies' },
+                    { src: 'images/usa/new-orleans/jazz-club.jpg', alt: 'Live jazz performance' },
+                    { src: 'images/usa/new-orleans/food.jpg', alt: 'Authentic Creole cuisine' }
+                ],
+                itinerary: [
+                    { day: 'Day 1', activities: 'French Quarter exploration, beignets at Café du Monde, riverfront walk' },
+                    { day: 'Day 2', activities: 'Jazz clubs on Frenchmen Street, Garden District tour, streetcar rides' },
+                    { day: 'Day 3', activities: 'Cooking class, cemetery tour, farewell dinner with live music' }
+                ]
+            },
+            'edinburgh': {
+                title: 'Edinburgh',
+                subtitle: 'My Graduate School Home',
+                story: 'Edinburgh became my second home during grad school. Living in a city where medieval castles coexist with world-class universities was magical. The city has this perfect blend of old and new.',
+                photos: [
+                    { src: 'images/europe/edinburgh/castle.jpg', alt: 'Edinburgh Castle from Grassmarket' },
+                    { src: 'images/europe/edinburgh/university.jpg', alt: 'University of Edinburgh campus' },
+                    { src: 'images/europe/edinburgh/old-town.jpg', alt: 'Royal Mile cobblestones' }
+                ],
+                itinerary: [
+                    { day: 'Daily Life', activities: 'Morning lectures, afternoon library sessions, evening walks up Arthur\'s Seat' },
+                    { day: 'Weekends', activities: 'Exploring the Royal Mile, visiting museums, pub quizzes with classmates' },
+                    { day: 'Special Days', activities: 'Edinburgh Festival events, day trips to Scottish Highlands' }
+                ]
+            },
+            'prague': {
+                title: 'Prague',
+                subtitle: 'The Fairy Tale City',
+                story: 'Prague seriously feels like walking through a fairy tale. Every street corner has incredible architecture, and the whole city just has this romantic, mysterious atmosphere that made me never want to leave.',
+                photos: [
+                    { src: 'images/europe/prague/charles-bridge.jpg', alt: 'Charles Bridge at sunrise' },
+                    { src: 'images/europe/prague/old-town.jpg', alt: 'Old Town Square' },
+                    { src: 'images/europe/prague/castle.jpg', alt: 'Prague Castle complex' }
+                ],
+                itinerary: [
+                    { day: 'Day 1', activities: 'Charles Bridge walk, Old Town Square, astronomical clock, traditional Czech dinner' },
+                    { day: 'Day 2', activities: 'Prague Castle tour, Lesser Town exploration, river cruise at sunset' },
+                    { day: 'Day 3', activities: 'Jewish Quarter history, local markets, rooftop bar with city views' }
+                ]
+            },
+            'tokyo': {
+                title: 'Tokyo',
+                subtitle: 'Where Tradition Meets Future',
+                story: 'Tokyo completely blew my mind. One minute you\'re in an ultra-modern district with robots and neon lights, the next you\'re in a quiet temple garden that feels like it hasn\'t changed in centuries.',
+                photos: [
+                    { src: 'images/asia/japan/tokyo/shibuya.jpg', alt: 'Shibuya crossing at night' },
+                    { src: 'images/asia/japan/tokyo/temple.jpg', alt: 'Traditional temple in Asakusa' },
+                    { src: 'images/asia/japan/tokyo/street-food.jpg', alt: 'Ramen shop in Golden Gai' }
+                ],
+                itinerary: [
+                    { day: 'Day 1', activities: 'Shibuya crossing, Harajuku fashion district, Meiji Shrine, sushi dinner' },
+                    { day: 'Day 2', activities: 'Asakusa temple, traditional markets, tea ceremony, Tokyo Skytree' },
+                    { day: 'Day 3', activities: 'Tsukiji fish market, Imperial Palace gardens, izakaya hopping in Shinjuku' }
+                ]
+            }
+        };
+
+        // Enhanced destination tag functionality
         document.querySelectorAll('.destination-tag').forEach(tag => {
             tag.addEventListener('click', function() {
-                if (!this.style.opacity || this.style.opacity === '1') {
-                    // Create ripple effect
-                    const ripple = document.createElement('span');
-                    const rect = this.getBoundingClientRect();
-                    const size = Math.max(rect.width, rect.height);
-                    const x = event.clientX - rect.left - size / 2;
-                    const y = event.clientY - rect.top - size / 2;
-                    
-                    ripple.style.width = ripple.style.height = size + 'px';
-                    ripple.style.left = x + 'px';
-                    ripple.style.top = y + 'px';
-                    ripple.style.position = 'absolute';
-                    ripple.style.borderRadius = '50%';
-                    ripple.style.background = 'rgba(255, 255, 255, 0.5)';
-                    ripple.style.transform = 'scale(0)';
-                    ripple.style.animation = 'ripple 0.6s linear';
-                    ripple.style.pointerEvents = 'none';
-                    
-                    this.style.position = 'relative';
-                    this.style.overflow = 'hidden';
-                    this.appendChild(ripple);
-                    
-                    setTimeout(() => {
-                        ripple.remove();
-                    }, 600);
-                    
-                    // Show modal or action
-                    showDestinationModal(this.textContent);
+                const destinationKey = this.getAttribute('data-destination');
+                
+                if (destinationKey && destinationData[destinationKey]) {
+                    showDestinationDetailModal(destinationKey);
+                } else {
+                    // For destinations without data, show simple modal
+                    showSimpleDestinationModal(this.textContent);
                 }
+                
+                // Create ripple effect
+                createRippleEffect(this, event);
             });
 
             // Enhanced hover effects
@@ -910,6 +1050,101 @@
                 }
             });
         });
+
+        function showDestinationDetailModal(destinationKey) {
+            const data = destinationData[destinationKey];
+            const photosHtml = data.photos.map(photo => 
+                `<div class="photo-item">
+                    <!-- Uncomment and add your photo: -->
+                    <!-- <img src="${photo.src}" alt="${photo.alt}"> -->
+                    <span>📸 Add ${photo.alt}</span>
+                </div>`
+            ).join('');
+
+            const itineraryHtml = data.itinerary.map(day => 
+                `<div class="itinerary-day">
+                    <div class="day-title">${day.day}</div>
+                    <div class="day-activities">${day.activities}</div>
+                </div>`
+            ).join('');
+
+            const modal = createModal(`
+                <div class="modal-header">
+                    <button class="modal-close" onclick="closeModal()">&times;</button>
+                    <h2 class="modal-title">${data.title}</h2>
+                    <p class="modal-subtitle">${data.subtitle}</p>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-section">
+                        <h3>📖 My Experience</h3>
+                        <p style="line-height: 1.7; color: #4a5568;">${data.story}</p>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>📸 Photo Gallery</h3>
+                        <div class="photo-gallery-modal">
+                            ${photosHtml}
+                        </div>
+                        <div class="add-content-note">
+                            💡 To add photos: Upload to images/${destinationKey}/ folder and uncomment the img tags in the HTML
+                        </div>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>📅 What I Did</h3>
+                        ${itineraryHtml}
+                    </div>
+                </div>
+            `);
+        }
+
+        function showSimpleDestinationModal(destination) {
+            const modal = createModal(`
+                <div class="modal-header">
+                    <button class="modal-close" onclick="closeModal()">&times;</button>
+                    <h2 class="modal-title">${destination}</h2>
+                    <p class="modal-subtitle">Coming Soon</p>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-section">
+                        <h3>✨ More Details Coming</h3>
+                        <p style="line-height: 1.7; color: #4a5568;">
+                            I'll be adding detailed stories, photos, and itineraries for ${destination} soon! 
+                            This will include my favorite spots, what I learned, and practical tips for visiting.
+                        </p>
+                        <div class="add-content-note">
+                            💡 To customize this: Add "${destination.toLowerCase().replace(/\s+/g, '-')}" to the destinationData object in the JavaScript
+                        </div>
+                    </div>
+                </div>
+            `);
+        }
+
+        function createRippleEffect(element, event) {
+            const ripple = document.createElement('span');
+            const rect = element.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = event.clientX - rect.left - size / 2;
+            const y = event.clientY - rect.top - size / 2;
+            
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            ripple.style.position = 'absolute';
+            ripple.style.borderRadius = '50%';
+            ripple.style.background = 'rgba(255, 255, 255, 0.5)';
+            ripple.style.transform = 'scale(0)';
+            ripple.style.animation = 'ripple 0.6s linear';
+            ripple.style.pointerEvents = 'none';
+            
+            element.style.position = 'relative';
+            element.style.overflow = 'hidden';
+            element.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        }
 
         // Story image interactions with photo upload simulation
         document.querySelectorAll('.story-image').forEach(image => {
