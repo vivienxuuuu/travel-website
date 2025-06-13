@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wanderlust Chronicles</title>
+    <title>Vivien's Travel Diary</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap');
 
@@ -231,7 +231,7 @@
             line-height: 1.1;
         }
 
-        /* Travel Stories - COMPLETELY STATIC */
+        /* Travel Stories */
         .travel-stories {
             display: flex;
             flex-direction: column;
@@ -245,16 +245,6 @@
             align-items: center;
             position: static;
             margin-bottom: 8rem;
-            /* Removed all transitions and transforms */
-        }
-
-        .story-card::before {
-            display: none;
-        }
-
-        /* NO hover effects on story cards */
-        .story-card:hover {
-            /* Completely empty - no movement */
         }
 
         .story-card:nth-child(even) {
@@ -274,13 +264,7 @@
             overflow: hidden;
             border-radius: 30px;
             box-shadow: 0 25px 60px rgba(102, 126, 234, 0.3);
-            transform: none !important;
             cursor: default;
-        }
-
-        .story-image:hover {
-            transform: none !important;
-            box-shadow: 0 25px 60px rgba(102, 126, 234, 0.3) !important;
         }
 
         /* Photo display styles */
@@ -311,53 +295,6 @@
             font-weight: 500;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
             line-height: 1.6;
-        }
-
-        .add-photo-note {
-            position: absolute;
-            bottom: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .story-image:hover .add-photo-note {
-            opacity: 1;
-        }
-
-        .story-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect width="400" height="300" fill="rgba(255,255,255,0.1)"/><circle cx="150" cy="100" r="30" fill="rgba(255,255,255,0.15)"/><polygon points="50,250 150,180 250,200 350,140 400,160 400,300 0,300" fill="rgba(255,255,255,0.1)"/><text x="200" y="160" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="16" font-family="Inter">Your Photos Here</text></svg>');
-            background-size: cover;
-            transition: opacity 0.3s;
-        }
-
-        .story-image:hover::before {
-            opacity: 0.7;
-        }
-
-        .story-image-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-weight: 600;
-            font-size: 1.2rem;
-            text-align: center;
-            line-height: 2;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
         .story-content {
@@ -456,6 +393,167 @@
         .highlight-tag:hover {
             background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             box-shadow: 0 15px 35px rgba(240, 147, 251, 0.4);
+        }
+
+        /* Modal Styles for Destination Details */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 25px;
+            max-width: 900px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 25px 25px 0 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .modal-section {
+            margin-bottom: 3rem;
+        }
+
+        .modal-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #4a5568;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+
+        .photo-gallery-modal {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .photo-item {
+            aspect-ratio: 4/3;
+            background: linear-gradient(135deg, #f7fafc, #e2e8f0);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #a0aec0;
+            font-size: 0.9rem;
+            border: 2px dashed #cbd5e0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .photo-item:hover {
+            border-color: #667eea;
+            color: #667eea;
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 13px;
+        }
+
+        .itinerary-day {
+            background: #f8fafc;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #667eea;
+        }
+
+        .day-title {
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .day-activities {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        .add-content-note {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: 1rem;
         }
 
         /* Future Adventures */
@@ -647,12 +745,7 @@
             transform: translateY(0);
         }
 
-        /* Special adventure highlight - REMOVED ANIMATION */
-        .special-adventure {
-            position: relative;
-        }
-
-        /* Floating elements - Fixed positioning */
+        /* Floating elements */
         .floating-element {
             position: absolute;
             opacity: 0.3;
@@ -682,6 +775,13 @@
             75% { 
                 transform: translateY(-25px) translateX(8px) rotate(7deg); 
                 opacity: 0.5;
+            }
+        }
+
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
             }
         }
     </style>
@@ -731,14 +831,10 @@
             
             <div class="travel-stories">
                 <!-- US Adventures -->
-                <div class="story-card fade-in special-adventure">
+                <div class="story-card fade-in">
                     <div class="story-image">
-                            <img src="images/usa/new-york/skyline.jpeg" alt="New York skyline from my NYU dorm">
-                        </div> -->
-                        <div class="photo-placeholder">
-                            🗽 Manhattan Memories<br>
-                            🚂 Epic Rail Journey<br>
-                            🎵 Jazz & Soul
+                        <div class="photo-container">
+                            <img src="images/usa/new-york/skyline.jpeg" alt="New York skyline">
                         </div>
                     </div>
                     <div class="story-content">
@@ -763,16 +859,11 @@
                 <!-- Europe Adventures -->
                 <div class="story-card fade-in">
                     <div class="story-image">
-                        <!-- Replace with your actual photo -->
-                        <!-- <div class="photo-container">
-                            <img src="images/europe/edinburgh-castle.jpg" alt="Edinburgh Castle from my university">
-                        </div> -->
                         <div class="photo-placeholder">
                             🏰 Medieval Castles<br>
                             🌉 Historic Bridges<br>
                             🍝 Culinary Delights
                         </div>
-                        <div class="add-photo-note">Add your photos by editing the HTML</div>
                     </div>
                     <div class="story-content">
                         <span class="continent-badge">🇪🇺 Europe</span>
@@ -798,16 +889,11 @@
                 <!-- Asia Adventures -->
                 <div class="story-card fade-in">
                     <div class="story-image">
-                        <!-- Replace with your actual photo -->
-                        <!-- <div class="photo-container">
-                            <img src="images/asia/tokyo-street.jpg" alt="Busy Tokyo street scene">
-                        </div> -->
                         <div class="photo-placeholder">
                             🏯 Ancient Traditions<br>
                             🌸 Cultural Immersion<br>
                             🍜 Culinary Adventures
                         </div>
-                        <div class="add-photo-note">Add your photos by editing the HTML</div>
                     </div>
                     <div class="story-content">
                         <span class="continent-badge">🌏 Asia</span>
@@ -869,7 +955,7 @@
     </footer>
 
     <script>
-        // Update smooth scrolling targets
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -883,7 +969,7 @@
             });
         });
 
-        // Enhanced scroll animations with stagger effect
+        // Scroll animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -100px 0px'
@@ -894,7 +980,7 @@
                 if (entry.isIntersecting) {
                     setTimeout(() => {
                         entry.target.classList.add('visible');
-                    }, index * 200); // Stagger animations
+                    }, index * 200);
                 }
             });
         }, observerOptions);
@@ -903,7 +989,7 @@
             observer.observe(el);
         });
 
-        // Enhanced header scroll effect
+        // Header scroll effect
         let lastScroll = 0;
         const header = document.getElementById('header');
 
@@ -916,7 +1002,6 @@
                 header.classList.remove('scrolled');
             }
             
-            // Hide header on scroll down, show on scroll up
             if (currentScroll > lastScroll && currentScroll > 200) {
                 header.style.transform = 'translateX(-50%) translateY(-100%)';
             } else {
@@ -926,19 +1011,19 @@
             lastScroll = currentScroll;
         });
 
-        // Enhanced destination management with detailed modals
+        // Destination data for modal windows
         const destinationData = {
             'new-york': {
                 title: 'New York City',
                 subtitle: 'NYU Exchange Program',
-                story: 'Living in Manhattan for my exchange semester was a dream come true. From my small apartment in middle manhatten, I could walk to classes through one of the most vibrant neighborhoods in the world.',
+                story: 'Living in Manhattan for my exchange semester was a dream come true. From my small apartment in middle Manhattan, I could walk to classes through one of the most vibrant neighborhoods in the world.',
                 photos: [
                     { src: 'images/usa/new-york/skyline.jpeg', alt: 'Manhattan skyline from Brooklyn Bridge' },
                     { src: 'images/usa/new-york/bagel.jpeg', alt: 'The best bagel in the world' },
-                    { src: 'images/usa/new-york/manhatten.jpg', alt: 'The streets in Christmas time' }
+                    { src: 'images/usa/new-york/manhattan.jpg', alt: 'The streets in Christmas time' }
                 ],
                 itinerary: [
-                    { day: 'Week 1', activities: 'Getting settled in dorm, campus orientation, exploring Greenwich Village' },
+                    { day: 'Week 1', activities: 'Getting settled in apartment, campus orientation, exploring Greenwich Village' },
                     { day: 'Weekends', activities: 'Brooklyn Bridge walks, Central Park picnics, Broadway shows' },
                     { day: 'Study Spots', activities: 'NYU Library, coffee shops in SoHo, rooftop study areas' }
                 ]
@@ -1028,15 +1113,12 @@
                 if (destinationKey && destinationData[destinationKey]) {
                     showDestinationDetailModal(destinationKey);
                 } else {
-                    // For destinations without data, show simple modal
                     showSimpleDestinationModal(this.textContent);
                 }
                 
-                // Create ripple effect
                 createRippleEffect(this, event);
             });
 
-            // Enhanced hover effects
             tag.addEventListener('mouseenter', function() {
                 this.style.transform = 'translateY(-4px) scale(1.05)';
             });
@@ -1052,9 +1134,8 @@
             const data = destinationData[destinationKey];
             const photosHtml = data.photos.map(photo => 
                 `<div class="photo-item">
-                    <!-- Uncomment and add your photo: -->
-                    <!-- <img src="${photo.src}" alt="${photo.alt}"> -->
-                    <span>📸 Add ${photo.alt}</span>
+                    <img src="${photo.src}" alt="${photo.alt}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <span style="display:none;">📸 ${photo.alt}</span>
                 </div>`
             ).join('');
 
@@ -1083,7 +1164,7 @@
                             ${photosHtml}
                         </div>
                         <div class="add-content-note">
-                            💡 To add photos: Upload to images/${destinationKey}/ folder and uncomment the img tags in the HTML
+                            💡 Photos load automatically. If not showing, check file paths and formats (use JPG/PNG)
                         </div>
                     </div>
                     
@@ -1143,104 +1224,6 @@
             }, 600);
         }
 
-        // Story image interactions with photo upload simulation
-        document.querySelectorAll('.story-image').forEach(image => {
-            image.addEventListener('click', function() {
-                showPhotoUploadModal();
-            });
-
-            // Parallax effect on scroll
-            window.addEventListener('scroll', () => {
-                const rect = image.getBoundingClientRect();
-                const speed = 0.5;
-                const yPos = -(rect.top * speed);
-                image.style.transform = `translateY(${yPos}px)`;
-            });
-        });
-
-        // Add CSS animation for ripple effect
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes ripple {
-                to {
-                    transform: scale(4);
-                    opacity: 0;
-                }
-            }
-            
-            .modal {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0, 0, 0, 0.8);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                z-index: 10000;
-                opacity: 0;
-                visibility: hidden;
-                transition: all 0.3s ease;
-            }
-            
-            .modal.active {
-                opacity: 1;
-                visibility: visible;
-            }
-            
-            .modal-content {
-                background: white;
-                padding: 3rem;
-                border-radius: 20px;
-                max-width: 500px;
-                width: 90%;
-                transform: scale(0.8);
-                transition: transform 0.3s ease;
-            }
-            
-            .modal.active .modal-content {
-                transform: scale(1);
-            }
-        `;
-        document.head.appendChild(style);
-
-        // Modal functions
-        function showDestinationModal(destination) {
-            const modal = createModal(`
-                <h3 style="font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 1rem; color: #667eea;">
-                    ${destination}
-                </h3>
-                <p style="color: #4a5568; margin-bottom: 2rem; line-height: 1.6;">
-                    ✨ Ready to add your amazing photos and stories from this destination? 
-                    Click here to upload memories and create your travel journal!
-                </p>
-                <button onclick="closeModal()" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; padding: 12px 24px; border-radius: 25px; cursor: pointer; font-weight: 600;">
-                    Coming Soon!
-                </button>
-            `);
-        }
-
-        function showPhotoUploadModal() {
-            const modal = createModal(`
-                <h3 style="font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 1rem; color: #667eea;">
-                    📸 Create Your Photo Gallery
-                </h3>
-                <p style="color: #4a5568; margin-bottom: 2rem; line-height: 1.6;">
-                    Transform this space into your personal photo gallery! Upload your travel photos, 
-                    add captions, and create beautiful stories from your adventures.
-                </p>
-                <div style="display: flex; gap: 1rem;">
-                    <button onclick="closeModal()" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; padding: 12px 24px; border-radius: 25px; cursor: pointer; font-weight: 600;">
-                        Upload Photos
-                    </button>
-                    <button onclick="closeModal()" style="background: #f8f9fa; color: #4a5568; border: 2px solid #e2e8f0; padding: 12px 24px; border-radius: 25px; cursor: pointer; font-weight: 600;">
-                        Maybe Later
-                    </button>
-                </div>
-            `);
-        }
-
         function createModal(content) {
             const modal = document.createElement('div');
             modal.className = 'modal';
@@ -1252,12 +1235,10 @@
             
             document.body.appendChild(modal);
             
-            // Trigger animation
             setTimeout(() => {
                 modal.classList.add('active');
             }, 10);
             
-            // Close on outside click
             modal.addEventListener('click', (e) => {
                 if (e.target === modal) {
                     closeModal();
@@ -1276,86 +1257,6 @@
                 }, 300);
             }
         }
-
-        // Add some dynamic floating elements - Fixed constraints
-        function createFloatingElement() {
-            const emojis = ['✈️', '🌟', '🗺️', '📸', '🎒'];
-            const hero = document.querySelector('.hero');
-            const element = document.createElement('div');
-            
-            element.className = 'floating-element';
-            element.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-            
-            // Constrain to hero section bounds with padding
-            const heroRect = hero.getBoundingClientRect();
-            const padding = 100; // Keep away from edges
-            
-            element.style.left = (padding + Math.random() * (heroRect.width - padding * 2)) + 'px';
-            element.style.top = (padding + Math.random() * (heroRect.height - padding * 2)) + 'px';
-            element.style.fontSize = (Math.random() * 15 + 25) + 'px';
-            element.style.animationDelay = Math.random() * 12 + 's';
-            
-            hero.appendChild(element);
-            
-            // Remove after animation completes
-            setTimeout(() => {
-                if (element.parentNode) {
-                    element.remove();
-                }
-            }, 12000);
-        }
-
-        // Limit number of floating elements and reduce frequency
-        let floatingCount = 0;
-        const maxFloating = 4;
-
-        function manageFloatingElements() {
-            if (floatingCount < maxFloating) {
-                createFloatingElement();
-                floatingCount++;
-                
-                // Decrease count when element is removed
-                setTimeout(() => {
-                    floatingCount--;
-                }, 12000);
-            }
-        }
-
-        // Create floating elements less frequently
-        setInterval(manageFloatingElements, 4000);
-
-        // Add fewer initial floating elements
-        for (let i = 0; i < 2; i++) {
-            setTimeout(manageFloatingElements, i * 3000);
-        }
-
-        // Parallax effect for hero section ONLY
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero');
-            const heroContent = document.querySelector('.hero-content');
-            
-            // Only apply parallax to hero section
-            if (hero && heroContent) {
-                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-                heroContent.style.transform = `translateY(${scrolled * 0.3}px)`;
-            }
-            
-            // Force story images to stay in place
-            document.querySelectorAll('.story-image').forEach(image => {
-                image.style.transform = 'none !important';
-            });
-        });
-
-        // Add loading animation
-        window.addEventListener('load', () => {
-            document.body.style.opacity = '0';
-            document.body.style.transition = 'opacity 0.5s ease';
-            
-            setTimeout(() => {
-                document.body.style.opacity = '1';
-            }, 100);
-        });
     </script>
 </body>
 </html>
