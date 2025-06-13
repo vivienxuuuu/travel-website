@@ -243,30 +243,26 @@
             grid-template-columns: 1fr 1fr;
             gap: 6rem;
             align-items: center;
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
+            margin-bottom: 8rem;
         }
 
         .story-card::before {
             content: '';
             position: absolute;
-            top: -50px;
-            left: -50px;
-            right: -50px;
-            bottom: -50px;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(240, 147, 251, 0.05));
-            border-radius: 40px;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.02), rgba(240, 147, 251, 0.02));
+            border-radius: 30px;
             opacity: 0;
-            transition: opacity 0.6s ease;
+            transition: opacity 0.4s ease;
             z-index: -1;
         }
 
         .story-card:hover::before {
             opacity: 1;
-        }
-
-        .story-card:hover {
-            transform: translateY(-20px);
         }
 
         .story-card:nth-child(even) {
@@ -290,8 +286,7 @@
         }
 
         .story-image:hover {
-            transform: scale(1.05) rotate(2deg);
-            box-shadow: 0 35px 80px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.2);
         }
 
         .story-image::before {
@@ -666,12 +661,12 @@
 <body>
     <header id="header">
         <nav class="container">
-            <div class="logo">Wanderlust Chronicles</div>
+            <div class="logo">Vivien's Travel Diary</div>
             <ul class="nav-links">
-                <li><a href="#adventures">Adventures</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#travels">My Travels</a></li>
                 <li><a href="#gallery">Gallery</a></li>
                 <li><a href="#future">Future Plans</a></li>
-                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -684,15 +679,27 @@
         <div class="floating-element" style="right: 15%; bottom: 25%; animation-delay: 9s;">📸</div>
         
         <div class="hero-content">
-            <h1>Adventure Awaits</h1>
-            <p>Exploring the world through unforgettable journeys and endless curiosity</p>
-            <a href="#adventures" class="cta-button">Discover My Adventures</a>
+            <h1>Hi, I'm Vivien!</h1>
+            <p>Welcome to my little corner of the internet where I share my travels</p>
+            <a href="#about" class="cta-button">Read My Story</a>
         </div>
     </section>
 
     <main>
-        <section id="adventures" class="container">
-            <h2 class="section-title fade-in">Epic Adventures</h2>
+        <section id="about" class="container" style="padding: 6rem 0 4rem;">
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 600; margin-bottom: 2rem; color: #4a5568;">Why I Started This</h2>
+                <p style="font-size: 1.2rem; line-height: 1.8; color: #4a5568; margin-bottom: 2rem;">
+                    I've always been someone who gets excited about new places and different cultures. After studying abroad and taking some pretty amazing trips, I realized I wanted a place to collect all these memories and stories.
+                </p>
+                <p style="font-size: 1.2rem; line-height: 1.8; color: #4a5568;">
+                    This website is basically my digital scrapbook - somewhere I can look back on all the places I've been and get excited about where I'm going next. If my stories inspire you to travel somewhere new, that's just a bonus!
+                </p>
+            </div>
+        </section>
+
+        <section id="travels" class="container">
+            <h2 class="section-title fade-in">My Travels</h2>
             
             <div class="travel-stories">
                 <!-- US Adventures -->
@@ -706,13 +713,13 @@
                     </div>
                     <div class="story-content">
                         <span class="continent-badge">🇺🇸 United States</span>
-                        <h3 class="story-title">American Odyssey</h3>
+                        <h3 class="story-title">My Time in America</h3>
                         <p class="story-description">
-                            From the bustling streets of Manhattan during my NYU exchange to the mesmerizing 40-hour train journey across America, each destination revealed a new layer of this incredible country. The jazz-filled nights in New Orleans, the innovation of Seattle, and the raw beauty of Yellowstone created memories that will last a lifetime.
+                            Living in New York for my exchange at NYU was incredible - the energy of Manhattan never gets old! The highlight was definitely that crazy 40-hour train ride from Chicago to San Francisco. Watching America change through the window was like flipping through a giant photo book. New Orleans had the best jazz and food, Seattle's coffee scene was amazing, and Yellowstone just blew my mind with its natural beauty.
                         </p>
                         <div class="destinations-list">
                             <span class="destination-tag highlight-tag">New York (NYU Exchange)</span>
-                            <span class="destination-tag highlight-tag">40-Hour Train Adventure</span>
+                            <span class="destination-tag highlight-tag">40-Hour Train Ride</span>
                             <span class="destination-tag">New Orleans</span>
                             <span class="destination-tag">Los Angeles</span>
                             <span class="destination-tag">Seattle</span>
@@ -734,12 +741,12 @@
                     </div>
                     <div class="story-content">
                         <span class="continent-badge">🇪🇺 Europe</span>
-                        <h3 class="story-title">European Wanderings</h3>
+                        <h3 class="story-title">Exploring Europe</h3>
                         <p class="story-description">
-                            Edinburgh became my academic home, where ancient castles met cutting-edge research. My European journey unfolded like pages in a history book - from Prague's fairy-tale architecture to Copenhagen's cozy hygge culture, and Italy's perfect blend of ancient Rome and authentic Naples. Each country offered its own rhythm and stories.
+                            Edinburgh was my home base for grad school - I loved how the old castle sits right next to modern university buildings. From there, I explored so many amazing places. Prague felt like a fairy tale, Copenhagen was all about cozy cafes and bikes, and Italy... wow. Rome's history is everywhere you look, and Naples has the most authentic pizza I've ever had. Each country had its own vibe and stories to tell.
                         </p>
                         <div class="destinations-list">
-                            <span class="destination-tag highlight-tag">Edinburgh (Postgraduate)</span>
+                            <span class="destination-tag highlight-tag">Edinburgh (Grad School)</span>
                             <span class="destination-tag">London</span>
                             <span class="destination-tag">York</span>
                             <span class="destination-tag">Spain</span>
@@ -764,13 +771,13 @@
                     </div>
                     <div class="story-content">
                         <span class="continent-badge">🌏 Asia</span>
-                        <h3 class="story-title">Eastern Discoveries</h3>
+                        <h3 class="story-title">Discovering Japan</h3>
                         <p class="story-description">
-                            Japan completely transformed my understanding of cultural harmony. The seamless blend of ultra-modern technology with ancient traditions, the precision in every detail, and the profound respect for both innovation and heritage created an experience that challenged every assumption I had about travel and cultural exchange.
+                            Japan completely changed how I think about travel and culture. Everything there is so thoughtfully designed - from the train stations to the tiny ramen shops. The way they blend super modern technology with ancient traditions is fascinating. I spent hours just walking around Tokyo, trying different foods, and getting lost in temples. It made me realize how much more of Asia I want to explore.
                         </p>
                         <div class="destinations-list">
                             <span class="destination-tag">Japan</span>
-                            <span class="destination-tag" style="opacity: 0.6; font-style: italic;">More adventures loading...</span>
+                            <span class="destination-tag" style="opacity: 0.6; font-style: italic;">More adventures coming soon...</span>
                         </div>
                     </div>
                 </div>
@@ -779,33 +786,33 @@
 
         <section id="future" class="future-section">
             <div class="container">
-                <h2 class="section-title fade-in">Dreams on the Horizon</h2>
-                <p class="future-description fade-in">Next destinations calling my wandering soul</p>
+                <h2 class="section-title fade-in">Places I Want to Visit Next</h2>
+                <p class="future-description fade-in">Dream destinations on my travel bucket list</p>
                 
                 <div class="wishlist-grid">
                     <div class="wishlist-card fade-in">
-                        <h4>🗾 Return to Japan</h4>
-                        <p>Cherry blossoms in Kyoto, street food in Osaka, and sunrise from Mount Fuji. Ready to dive deeper into the culture that captivated my heart.</p>
+                        <h4>🗾 Back to Japan</h4>
+                        <p>I only scratched the surface last time! Want to see cherry blossoms in Kyoto, try all the street food in Osaka, and maybe hike up Mount Fuji if I'm feeling brave.</p>
                     </div>
                     <div class="wishlist-card fade-in">
-                        <h4>🏔️ Swiss Adventures</h4>
-                        <p>Alpine villages wrapped in mist, scenic train journeys through mountain passes, and cozy chalets with panoramic views.</p>
+                        <h4>🏔️ Switzerland</h4>
+                        <p>Those mountain villages look incredible in photos. I'm dreaming of scenic train rides, cozy chalets, and maybe some skiing if I don't fall too much.</p>
                     </div>
                     <div class="wishlist-card fade-in">
-                        <h4>🌸 South Korean Culture</h4>
-                        <p>Seoul's vibrant neighborhoods, traditional temples, Jeju Island's natural beauty, and the warmth of Korean hospitality.</p>
+                        <h4>🌸 South Korea</h4>
+                        <p>Seoul's food scene looks amazing, and I've heard Jeju Island is beautiful. Plus I want to experience Korean culture beyond just K-dramas!</p>
                     </div>
                     <div class="wishlist-card fade-in">
-                        <h4>🏛️ Greek Island Hopping</h4>
-                        <p>Santorini sunsets, Mykonos beaches, ancient ruins whispering stories, and the Mediterranean's crystal-clear waters.</p>
+                        <h4>🏛️ Greek Islands</h4>
+                        <p>Island hopping sounds like the perfect summer adventure. Santorini sunsets, swimming in crystal clear water, and exploring ancient ruins.</p>
                     </div>
                     <div class="wishlist-card fade-in">
-                        <h4>🦘 Australian Outback</h4>
-                        <p>Sydney's iconic harbor, the Great Barrier Reef's underwater wonders, and the vast, star-filled skies of the Outback.</p>
+                        <h4>🦘 Australia</h4>
+                        <p>It's so far but looks incredible! Sydney's harbor, snorkeling at the Great Barrier Reef, and maybe seeing some kangaroos in the wild.</p>
                     </div>
                     <div class="wishlist-card fade-in">
-                        <h4>🌊 Portuguese Coastlines</h4>
-                        <p>Lisbon's colorful trams winding through historic hills, Porto's wine cellars, and the dramatic cliffs of the Algarve coastline.</p>
+                        <h4>🌊 Portugal</h4>
+                        <p>Lisbon's colorful buildings and those famous trams look so charming. Plus I've heard the coastal towns are gorgeous and the food is amazing.</p>
                     </div>
                 </div>
             </div>
@@ -815,22 +822,24 @@
     <footer id="contact">
         <div class="container">
             <div class="footer-content">
-                <p>✨ Where wanderlust meets storytelling</p>
-                <p>&copy; 2025 Wanderlust Chronicles. Crafted with passion for adventure and beautiful design.</p>
+                <p>✨ Thanks for following along on my travel journey</p>
+                <p>&copy; 2025 Vivien's Travel Diary. Made with love and lots of travel memories.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Smooth scrolling with easing
+        // Update smooth scrolling targets
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
         });
 
